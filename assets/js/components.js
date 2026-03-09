@@ -14,7 +14,13 @@ function highlightActiveLink(container) {
   const path = window.location.pathname;
 
   links.forEach(link => {
-    if (link.getAttribute("href") === path) {
+    const href = link.getAttribute("href");
+
+    if (href !== "/" && path.startsWith(href)) {
+      link.classList.add("active");
+    }
+
+    if (href === "/" && path === "/") {
       link.classList.add("active");
     }
   });
