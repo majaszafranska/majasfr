@@ -27,3 +27,29 @@ function highlightActiveLink(container) {
 }
 
 loadComponent("nav", "/components/nav.html");
+
+function roll(){
+  const faces = ["⚀","⚁","⚂","⚃","⚄","⚅"];
+  const dice = document.getElementById("dice");
+  const button = document.getElementById("roll-btn");
+
+  button.disabled = true;
+  dice.classList.add("rolling");
+
+  let i = 0;
+
+  const interval = setInterval(()=>{
+    dice.textContent = faces[Math.floor(Math.random()*6)];
+    i++;
+
+    if(i > 12){
+      clearInterval(interval);
+
+      dice.classList.remove("rolling");
+      dice.textContent = faces[Math.floor(Math.random()*6)];
+
+      button.disabled = false;
+    }
+
+  },120);
+}
